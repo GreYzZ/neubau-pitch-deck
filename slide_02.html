@@ -16,55 +16,57 @@
   .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em;color:#ffffff; }
   .brand span { color:#5b8ff1; }
   .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
-  .body { flex:1;display:flex;flex-direction:column;padding:2.5vh 4.5vw 2vh;gap:2.5vh;min-height:0; }
+  .body { flex:1;display:flex;flex-direction:column;padding:2.5vh 4.5vw 2vh;gap:2vh;min-height:0; }
   .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:2vh; }
   .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
   .headline { font-size:clamp(32px,4.5vw,72px);font-weight:900;line-height:1.05;color:#ffffff; }
   .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
-
   .pillars { display:flex;gap:1.5vw;flex:1;min-height:0; }
-
-  .pillar { flex:1;border-radius:16px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(18px,2vh,28px) clamp(18px,1.8vw,28px);display:flex;flex-direction:column;gap:1.4vh;position:relative;overflow:hidden; }
+  .pillar { flex:1;border-radius:16px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(16px,1.8vh,24px) clamp(16px,1.6vw,24px);display:flex;flex-direction:column;gap:1.3vh;position:relative;overflow:hidden; }
   .pillar::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.2),transparent); }
   .pillar.featured { background:linear-gradient(160deg,#1f2535 0%,#252d40 100%);border-color:rgba(91,143,241,0.3);box-shadow:0 0 60px rgba(91,143,241,0.10),inset 0 0 40px rgba(91,143,241,0.04); }
   .pillar.featured::after { left:5%;right:5%;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
   .pillar.featured::before { content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:240px;height:240px;background:radial-gradient(circle,rgba(91,143,241,0.12) 0%,transparent 70%);pointer-events:none; }
-
   .pillar-num { font-size:clamp(10px,0.8vw,13px);font-weight:700;letter-spacing:0.15em;color:rgba(255,255,255,0.35); }
   .pillar.featured .pillar-num { color:rgba(91,143,241,0.7); }
-
-  .pillar-icon { width:clamp(40px,4vw,60px);height:clamp(40px,4vw,60px);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:clamp(18px,1.8vw,28px);flex-shrink:0; }
+  .pillar-icon { width:clamp(36px,3.5vw,54px);height:clamp(36px,3.5vw,54px);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:clamp(16px,1.6vw,26px);flex-shrink:0; }
   .pillar:not(.featured) .pillar-icon { background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1); }
   .pillar.featured .pillar-icon { background:rgba(91,143,241,0.15);border:1px solid rgba(91,143,241,0.3); }
-
-  .pillar-title { font-size:clamp(18px,1.8vw,28px);font-weight:900;line-height:1.15;color:#ffffff;flex-shrink:0; }
+  .pillar-title { font-size:clamp(16px,1.7vw,26px);font-weight:900;line-height:1.15;color:#ffffff;flex-shrink:0; }
   .pillar.featured .pillar-title { font-style:italic; }
-
-  .pillar-desc { font-size:clamp(14px,1.2vw,19px);font-weight:400;color:rgba(255,255,255,0.78);line-height:1.6;flex:1; }
+  .pillar-desc { font-size:clamp(13px,1.1vw,18px);font-weight:400;color:rgba(255,255,255,0.78);line-height:1.55;flex:1; }
   .pillar.featured .pillar-desc { color:rgba(255,255,255,0.88); }
-
   .badges { display:flex;flex-wrap:wrap;gap:0.5vw;margin-top:auto;flex-shrink:0; }
-  .badge { font-size:clamp(10px,0.8vw,13px);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:20px;flex-shrink:0; }
+  .badge { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;flex-shrink:0; }
   .pillar:not(.featured) .badge { background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.65);border:1px solid rgba(255,255,255,0.12); }
   .pillar.featured .badge { background:rgba(91,143,241,0.15);color:#5b8ff1;border:1px solid rgba(91,143,241,0.25); }
   .pillar.featured .badge.primary { background:#5b8ff1;color:#ffffff;box-shadow:0 0 12px rgba(91,143,241,0.4); }
 
-  .price-bar { flex-shrink:0;display:flex;align-items:center;gap:2vw;padding:clamp(14px,1.6vh,22px) clamp(20px,2vw,30px);border-radius:14px;background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2); }
+  /* ── BOTTOM BAR: Preis + Trust ── */
+  .bottom-bar { flex-shrink:0;display:flex;gap:1.5vw;align-items:stretch; }
+
+  .price-bar { display:flex;align-items:center;gap:1.5vw;padding:clamp(12px,1.4vh,18px) clamp(16px,1.6vw,24px);border-radius:14px;background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.2);flex:1.2; }
   .price-main { display:flex;flex-direction:column;gap:0.3vh;flex-shrink:0; }
-  .price-label { font-size:clamp(11px,0.88vw,14px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5); }
+  .price-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5); }
   .price-row { display:flex;align-items:baseline;gap:0.5vw; }
-  .price-val { font-size:clamp(26px,3vw,48px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .price-unit { font-size:clamp(13px,1vw,16px);color:rgba(255,255,255,0.5);font-weight:400; }
+  .price-val { font-size:clamp(22px,2.6vw,42px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .price-unit { font-size:clamp(12px,0.95vw,15px);color:rgba(255,255,255,0.5);font-weight:400; }
   .price-divider { width:1px;align-self:stretch;background:rgba(91,143,241,0.2);flex-shrink:0; }
-  .price-options { display:flex;flex-direction:column;gap:0.6vh;flex-shrink:0; }
-  .price-option { display:flex;align-items:center;gap:1vw;font-size:clamp(13px,1.05vw,17px); }
-  .po-dur { color:rgba(255,255,255,0.55);font-weight:400;min-width:8vw; }
+  .price-options { display:flex;flex-direction:column;gap:0.5vh;flex-shrink:0; }
+  .price-option { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px); }
+  .po-dur { color:rgba(255,255,255,0.55);font-weight:400;min-width:7vw; }
   .po-val { font-weight:700;color:#ffffff; }
   .po-val.disc { color:#5b8ff1; }
-  .price-includes { flex:1;display:flex;flex-direction:column;gap:0.6vh; }
-  .pi-label { font-size:clamp(11px,0.88vw,14px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:0.3vh; }
-  .pi-badges { display:flex;flex-wrap:wrap;gap:0.5vw; }
-  .pi-badge { font-size:clamp(10px,0.8vw,13px);font-weight:700;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.1); }
+  .price-includes { flex:1;display:flex;flex-direction:column;gap:0.5vh; }
+  .pi-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:0.3vh; }
+  .pi-badges { display:flex;flex-wrap:wrap;gap:0.4vw; }
+  .pi-badge { font-size:clamp(9px,0.75vw,12px);font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.1); }
+
+  /* ── TRUST BLOCK ── */
+  .trust-bar { display:flex;flex-direction:column;gap:0.8vh;padding:clamp(12px,1.4vh,18px) clamp(14px,1.4vw,20px);border-radius:14px;background:rgba(52,199,89,0.06);border:1px solid rgba(52,199,89,0.2);flex-shrink:0;width:22vw; }
+  .trust-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(52,199,89,0.8); }
+  .trust-row { display:flex;align-items:flex-start;gap:0.8vw;font-size:clamp(12px,0.95vw,15px);color:rgba(255,255,255,0.85);line-height:1.4; }
+  .trust-check { color:#34c759;font-size:clamp(12px,0.95vw,16px);flex-shrink:0;margin-top:1px; }
 
   .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
   .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
@@ -75,29 +77,22 @@
 <div class="slide-wrap">
   <div class="bg"></div>
   <div class="slide">
-
     <div class="header">
       <div class="brand">neubau<span>.</span>marketing</div>
       <div class="slide-num">02 / 10</div>
     </div>
-
     <div class="body">
-
       <div>
         <div class="eyebrow">Unser Ansatz</div>
-        <div class="headline">
-          Kein Lead-Gen-Anbieter.<br>
-          <span class="hl">Ein vollst&auml;ndiges Konversionssystem.</span>
-        </div>
+        <div class="headline">Kein Lead-Gen-Anbieter.<br><span class="hl">Ein vollst&auml;ndiges Konversionssystem.</span></div>
       </div>
 
       <div class="pillars">
-
         <div class="pillar">
           <div class="pillar-num">01</div>
           <div class="pillar-icon">&#128225;</div>
           <div class="pillar-title">Anfragen &amp; Kampagnen</div>
-          <div class="pillar-desc">Meta-Kampagnen auf Instagram &amp; Facebook, projektspezifische Landingpages, Creatives und Expos&eacute;-Mailversand. Steuerbar und skalierbar &mdash; CPL belegt zwischen 10 und 36 &euro;.</div>
+          <div class="pillar-desc">Meta-Kampagnen auf Instagram &amp; Facebook, projektspezifische Landingpages, Creatives und Expos&eacute;-Mailversand. Steuerbar und skalierbar &mdash; CPL belegt zwischen 17 und 36 &euro;.</div>
           <div class="badges">
             <div class="badge">Meta Ads</div>
             <div class="badge">Landingpage</div>
@@ -110,7 +105,7 @@
           <div class="pillar-num">02</div>
           <div class="pillar-icon">&#8594;</div>
           <div class="pillar-title">CRM &amp; Vertriebsprozess</div>
-          <div class="pillar-desc">Neobau Solutions auf Zoho-Basis: Pipelines, Follow-up-Automatisierung, Wiedervorlagen, KPI-Tracking. Kein Interessent geht verloren &mdash; jeder Schritt ist definiert und messbar.</div>
+          <div class="pillar-desc">Neobau Solutions auf Zoho-Basis: Pipelines, Follow-up-Automatisierung, Wiedervorlagen, KPI-Tracking. Keine Einheit geht verloren &mdash; jeder Schritt ist definiert und messbar.</div>
           <div class="badges">
             <div class="badge primary">Das fehlende Glied</div>
             <div class="badge">Zoho CRM</div>
@@ -130,43 +125,62 @@
             <div class="badge">Monatl. Strategie</div>
           </div>
         </div>
-
       </div>
 
-      <div class="price-bar">
-        <div class="price-main">
-          <div class="price-label">Ab</div>
-          <div class="price-row">
-            <div class="price-val">2.200 &euro;</div>
-            <div class="price-unit">/ Monat</div>
-          </div>
-        </div>
-        <div class="price-divider"></div>
-        <div class="price-options">
-          <div class="price-option"><div class="po-dur">3 Monate</div><div class="po-val">2.200 &euro; / Monat</div></div>
-          <div class="price-option"><div class="po-dur">4&ndash;6 Monate</div><div class="po-val disc">2.000 &euro; / Monat</div></div>
-        </div>
-        <div class="price-divider"></div>
-        <div class="price-includes">
-          <div class="pi-label">Alles inklusive &mdash; kein verstecktes Agenturbudget</div>
-          <div class="pi-badges">
-            <div class="pi-badge">Kampagnenmanagement</div>
-            <div class="pi-badge">Landingpage</div>
-            <div class="pi-badge">Creatives</div>
-            <div class="pi-badge">CRM-Grundstruktur</div>
-            <div class="pi-badge">Vertriebsberatung</div>
-            <div class="pi-badge">Monatl. Strategiegespr&auml;ch</div>
-          </div>
-        </div>
-      </div>
+      <!-- BOTTOM BAR -->
+      <div class="bottom-bar">
 
+        <!-- PREIS -->
+        <div class="price-bar">
+          <div class="price-main">
+            <div class="price-label">Ab</div>
+            <div class="price-row">
+              <div class="price-val">2.200 &euro;</div>
+              <div class="price-unit">/ Monat</div>
+            </div>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-options">
+            <div class="price-option"><div class="po-dur">3 Monate</div><div class="po-val">2.200 &euro; / Monat</div></div>
+            <div class="price-option"><div class="po-dur">4&ndash;6 Monate</div><div class="po-val disc">2.000 &euro; / Monat</div></div>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-includes">
+            <div class="pi-label">Alles inklusive &mdash; kein verstecktes Agenturbudget</div>
+            <div class="pi-badges">
+              <div class="pi-badge">Kampagnenmanagement</div>
+              <div class="pi-badge">Landingpage</div>
+              <div class="pi-badge">Creatives</div>
+              <div class="pi-badge">CRM-Grundstruktur</div>
+              <div class="pi-badge">Vertriebsberatung</div>
+              <div class="pi-badge">Monatl. Strategiegespr&auml;ch</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRUST -->
+        <div class="trust-bar">
+          <div class="trust-label">&#10003;&nbsp; Keine Agentur. Kein Risiko.</div>
+          <div class="trust-row">
+            <div class="trust-check">&#10003;</div>
+            <div>Kein Knebelvertrag &mdash; monatlich k&uuml;ndbar nach Mindestlaufzeit</div>
+          </div>
+          <div class="trust-row">
+            <div class="trust-check">&#10003;</div>
+            <div>Vollzugriff auf alle Konten &amp; Daten &mdash; jederzeit, ohne Einschr&auml;nkung</div>
+          </div>
+          <div class="trust-row">
+            <div class="trust-check">&#10003;</div>
+            <div>Sie reden mit uns direkt &mdash; kein Junior, kein Ticketsystem</div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
       <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
     </div>
-
   </div>
 </div>
 </body>
