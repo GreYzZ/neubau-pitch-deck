@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 09 – ROI-Rechner</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;width:100vw;height:100vh;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%),radial-gradient(ellipse 40vw 40vh at 50% 50%,rgba(91,143,241,0.04) 0%,transparent 70%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em;color:#ffffff; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+
+  .body { flex:1;display:flex;flex-direction:column;padding:2vh 4.5vw 2vh;gap:2vh;min-height:0; }
+
+  /* Eyebrow + Headline */
+  .eyebrow { font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1vh;display:flex;align-items:center;gap:1vw; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(24px,2.8vw,44px);font-weight:900;line-height:1.05;color:#ffffff;margin-bottom:0.5vh; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .subtext { font-size:clamp(13px,1.05vw,17px);color:rgba(255,255,255,0.65);margin-bottom:0; }
+
+  /* ── INPUTS ── */
+  .inputs-row { display:flex;gap:1.5vw;flex-shrink:0; }
+  .input-group { flex:1;display:flex;flex-direction:column;gap:0.6vh; }
+  .input-label { font-size:clamp(11px,0.88vw,14px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.65); }
+  .input-wrap { display:flex;align-items:center;gap:0.8vw;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:clamp(10px,1.2vh,16px) clamp(12px,1.2vw,18px);transition:border-color 0.2s; }
+  .input-wrap:focus-within { border-color:rgba(91,143,241,0.5);background:rgba(91,143,241,0.06); }
+  .input-wrap input { background:none;border:none;outline:none;color:#ffffff;font-family:'Roboto',sans-serif;font-size:clamp(16px,1.5vw,24px);font-weight:700;width:100%; }
+  .input-wrap input::placeholder { color:rgba(255,255,255,0.2); }
+  .input-wrap .unit { font-size:clamp(13px,1vw,16px);font-weight:700;color:rgba(255,255,255,0.45);flex-shrink:0; }
+
+  /* ── COMPARISON ── */
+  .comparison { display:flex;gap:1.5vw;flex:1;min-height:0; }
+
+  .col { flex:1;display:flex;flex-direction:column;gap:0; }
+
+  .col-label { font-size:clamp(11px,0.88vw,14px);font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1vh; }
+  .col-label.portal { color:rgba(255,255,255,0.4); }
+  .col-label.nbm { color:#5b8ff1; }
+
+  .col-card { flex:1;border-radius:16px;padding:clamp(14px,1.6vh,22px) clamp(16px,1.6vw,24px);display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden; }
+  .col-card.portal { background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08); }
+  .col-card.nbm { background:linear-gradient(145deg,rgba(91,143,241,0.10) 0%,rgba(91,143,241,0.03) 100%);border:1px solid rgba(91,143,241,0.3);box-shadow:0 0 60px rgba(91,143,241,0.10),inset 0 0 40px rgba(91,143,241,0.04); }
+  .col-card.nbm::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
+
+  .metric-row { display:flex;justify-content:space-between;align-items:center;padding:clamp(8px,1vh,13px) 0;border-bottom:1px solid rgba(255,255,255,0.07); }
+  .metric-row:last-child { border-bottom:none; }
+  .metric-name { font-size:clamp(13px,1.05vw,17px);font-weight:400;color:rgba(255,255,255,0.75); }
+  .metric-val { font-size:clamp(14px,1.2vw,20px);font-weight:900;color:#ffffff; }
+  .metric-val.blue { background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .metric-val.red { color:#ff6b6b; }
+
+  /* Arrow divider */
+  .arrow-col { display:flex;align-items:center;justify-content:center;flex-shrink:0;width:3vw; }
+  .arrow-circle { width:clamp(32px,3vw,48px);height:clamp(32px,3vw,48px);border-radius:50%;background:rgba(91,143,241,0.12);border:1px solid rgba(91,143,241,0.25);display:flex;align-items:center;justify-content:center;font-size:clamp(14px,1.4vw,22px);color:#5b8ff1; }
+
+  /* ── RESULT BOX ── */
+  .result-box { flex-shrink:0;border-radius:16px;background:linear-gradient(145deg,rgba(52,199,89,0.10) 0%,rgba(52,199,89,0.04) 100%);border:1px solid rgba(52,199,89,0.3);padding:clamp(12px,1.4vh,20px) clamp(16px,1.6vw,24px);display:flex;gap:2vw;align-items:center; }
+  .result-big { display:flex;flex-direction:column;gap:0.3vh;flex-shrink:0; }
+  .result-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(52,199,89,0.8); }
+  .result-value { font-size:clamp(28px,3.5vw,56px);font-weight:900;line-height:1;color:#34c759;filter:drop-shadow(0 0 16px rgba(52,199,89,0.3)); }
+  .result-divider { width:1px;align-self:stretch;background:rgba(52,199,89,0.2);flex-shrink:0; }
+  .result-details { display:flex;gap:2vw;flex:1;flex-wrap:wrap; }
+  .result-detail { display:flex;flex-direction:column;gap:0.3vh; }
+  .rd-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45); }
+  .rd-val { font-size:clamp(14px,1.3vw,22px);font-weight:900;color:#ffffff; }
+  .rd-val.green { color:#34c759; }
+  .result-note { font-size:clamp(10px,0.78vw,12px);color:rgba(255,255,255,0.35);font-style:italic;align-self:flex-end;flex-shrink:0; }
+
+  /* Footer */
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+</style>
+</head>
+<body>
+<div class="slide-wrap">
+  <div class="bg"></div>
+  <div class="slide">
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">09 / 10</div>
+    </div>
+    <div class="body">
+
+      <!-- HEADLINE -->
+      <div>
+        <div class="eyebrow">Ihr persönlicher ROI-Vergleich</div>
+        <div class="headline">Tragen Sie Ihre Werte ein &mdash; <span class="hl">die Rechnung macht sich selbst.</span></div>
+        <div class="subtext">Basierend auf realen Daten aus unseren Cases. Annahmen sichtbar unten.</div>
+      </div>
+
+      <!-- INPUTS -->
+      <div class="inputs-row">
+        <div class="input-group">
+          <div class="input-label">Aktuelles ImmoScout-Budget</div>
+          <div class="input-wrap">
+            <input type="number" id="inp_budget" value="2500" min="0" step="100" oninput="calc()">
+            <div class="unit">€ / Monat</div>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">&#216; Wohnungspreis</div>
+          <div class="input-wrap">
+            <input type="number" id="inp_price" value="350000" min="0" step="10000" oninput="calc()">
+            <div class="unit">€</div>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">Ihre Marge / Provision</div>
+          <div class="input-wrap">
+            <input type="number" id="inp_margin" value="18" min="1" max="100" step="1" oninput="calc()">
+            <div class="unit">%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPARISON -->
+      <div class="comparison">
+
+        <!-- PORTAL -->
+        <div class="col">
+          <div class="col-label portal">ImmoScout / Portale — Aktuell</div>
+          <div class="col-card portal">
+            <div class="metric-row"><div class="metric-name">Anfragen / Monat</div><div class="metric-val" id="p_leads">—</div></div>
+            <div class="metric-row"><div class="metric-name">Kosten pro Anfrage</div><div class="metric-val red" id="p_cpl">—</div></div>
+            <div class="metric-row"><div class="metric-name">Abschlüsse in 6 Monaten</div><div class="metric-val" id="p_deals">—</div></div>
+            <div class="metric-row"><div class="metric-name">Umsatz daraus</div><div class="metric-val" id="p_revenue">—</div></div>
+            <div class="metric-row"><div class="metric-name">Ihr Ertrag (Marge)</div><div class="metric-val" id="p_profit">—</div></div>
+          </div>
+        </div>
+
+        <div class="arrow-col">
+          <div class="arrow-circle">&#8594;</div>
+        </div>
+
+        <!-- NEUBAU.MARKETING -->
+        <div class="col">
+          <div class="col-label nbm">neubau.marketing</div>
+          <div class="col-card nbm">
+            <div class="metric-row"><div class="metric-name">Anfragen / Monat</div><div class="metric-val blue" id="n_leads">—</div></div>
+            <div class="metric-row"><div class="metric-name">Kosten pro Anfrage (Ø)</div><div class="metric-val blue" id="n_cpl">—</div></div>
+            <div class="metric-row"><div class="metric-name">Abschlüsse in 6 Monaten</div><div class="metric-val blue" id="n_deals">—</div></div>
+            <div class="metric-row"><div class="metric-name">Umsatz daraus</div><div class="metric-val blue" id="n_revenue">—</div></div>
+            <div class="metric-row"><div class="metric-name">Ihr Ertrag (Marge)</div><div class="metric-val blue" id="n_profit">—</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RESULT -->
+      <div class="result-box">
+        <div class="result-big">
+          <div class="result-label">Potenzielle Mehr-Einnahmen (6 Monate)</div>
+          <div class="result-value" id="r_gain">—</div>
+        </div>
+        <div class="result-divider"></div>
+        <div class="result-details">
+          <div class="result-detail">
+            <div class="rd-label">Zusätzliche Abschlüsse</div>
+            <div class="rd-val green" id="r_deals">—</div>
+          </div>
+          <div class="result-detail">
+            <div class="rd-label">Zusätzlicher Umsatz</div>
+            <div class="rd-val green" id="r_revenue">—</div>
+          </div>
+          <div class="result-detail">
+            <div class="rd-label">Kosten neubau.marketing (6 Mo.)</div>
+            <div class="rd-val" id="r_cost">—</div>
+          </div>
+        </div>
+        <div class="result-note">Annahmen: Abschlussquote Portale ~1,5%, neubau.marketing ~2,5% (aus Cases). Portal-Anfragen basierend auf Budget.</div>
+      </div>
+
+    </div>
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function fmt(n) {
+  return n.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' \u20AC';
+}
+function fmtN(n, dec) {
+  return n.toLocaleString('de-DE', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+
+function calc() {
+  const budget = parseFloat(document.getElementById('inp_budget').value) || 0;
+  const price  = parseFloat(document.getElementById('inp_price').value)  || 0;
+  const margin = parseFloat(document.getElementById('inp_margin').value) / 100 || 0;
+
+  // ── Portal ──
+  const p_leads_raw  = budget > 0 ? (budget / 250) : 0;    // ~250€ CPL portal
+  const p_leads_lo   = Math.round(p_leads_raw * 0.8);
+  const p_leads_hi   = Math.round(p_leads_raw * 1.2);
+  const p_cpl_val    = budget > 0 ? budget / ((p_leads_lo + p_leads_hi) / 2) : 0;
+  const p_deals_val  = (p_leads_lo + p_leads_hi) / 2 * 6 * 0.015;
+  const p_revenue_v  = p_deals_val * price;
+  const p_profit_v   = p_revenue_v * margin;
+
+  // ── neubau.marketing ──
+  const n_leads_lo   = 50;
+  const n_leads_hi   = 80;
+  const n_cpl_val    = 25;
+  const n_deals_val  = (n_leads_lo + n_leads_hi) / 2 * 6 * 0.025;
+  const n_revenue_v  = n_deals_val * price;
+  const n_profit_v   = n_revenue_v * margin;
+  const n_cost       = 6 * 2200;
+
+  // ── Delta ──
+  const r_deals_v   = n_deals_val - p_deals_val;
+  const r_revenue_v = n_revenue_v - p_revenue_v;
+  const r_gain_v    = (n_profit_v - p_profit_v) - n_cost;
+
+  // ── Update DOM ──
+  document.getElementById('p_leads').textContent   = p_leads_lo + '\u2013' + p_leads_hi;
+  document.getElementById('p_cpl').textContent     = fmtN(p_cpl_val, 0) + ' \u20AC';
+  document.getElementById('p_deals').textContent   = fmtN(p_deals_val, 1) + ' Whg.';
+  document.getElementById('p_revenue').textContent = fmt(p_revenue_v);
+  document.getElementById('p_profit').textContent  = fmt(p_profit_v);
+
+  document.getElementById('n_leads').textContent   = n_leads_lo + '\u2013' + n_leads_hi;
+  document.getElementById('n_cpl').textContent     = '~' + n_cpl_val + ' \u20AC';
+  document.getElementById('n_deals').textContent   = fmtN(n_deals_val, 1) + ' Whg.';
+  document.getElementById('n_revenue').textContent = fmt(n_revenue_v);
+  document.getElementById('n_profit').textContent  = fmt(n_profit_v);
+
+  document.getElementById('r_deals').textContent   = '+' + fmtN(r_deals_v, 1) + ' Wohnungen';
+  document.getElementById('r_revenue').textContent = '+' + fmt(r_revenue_v);
+  document.getElementById('r_cost').textContent    = '6 \u00D7 2.200 \u20AC = ' + fmt(n_cost);
+  document.getElementById('r_gain').textContent    = (r_gain_v >= 0 ? '+' : '') + fmt(r_gain_v);
+  document.getElementById('r_gain').style.color    = r_gain_v >= 0 ? '#34c759' : '#ff6b6b';
+}
+
+calc();
+</script>
+</body>
+</html>
