@@ -26,40 +26,28 @@
   .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
   .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
 
-  /* ── MAIN LAYOUT ── */
   .main { display:flex;gap:1.5vw;flex:1;min-height:0; }
-
-  /* ── LEFT: CPL Chart ── */
   .left { flex:1.2;display:flex;flex-direction:column;gap:1.4vh;min-width:0; }
-
-  /* ── RIGHT: Metriken + LP Conv ── */
   .right { flex:1;display:flex;flex-direction:column;gap:1.4vh;min-width:0; }
 
-  /* Cards */
   .card { border-radius:14px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(14px,1.5vh,20px) clamp(14px,1.4vw,22px);position:relative;overflow:hidden; }
   .card::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.2),transparent); }
   .card.hero { background:linear-gradient(145deg,rgba(91,143,241,0.10) 0%,rgba(91,143,241,0.03) 100%);border-color:rgba(91,143,241,0.25);box-shadow:0 0 50px rgba(91,143,241,0.08),inset 0 0 30px rgba(91,143,241,0.03); }
   .card.hero::after { left:5%;right:5%;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.5),transparent); }
-
   .card-label { font-size:clamp(12px,0.95vw,15px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:1.2vh; }
   .card.hero .card-label { color:#5b8ff1; }
-
   .chart-wrap { position:relative;flex:1;min-height:0; }
 
-  /* Bento grid für Metriken */
   .bento-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.2vh; }
-
   .bento { border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(10px,1.2vh,16px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.4vh;position:relative;overflow:hidden; }
   .bento::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.15),transparent); }
   .bento.blue { background:rgba(91,143,241,0.07);border-color:rgba(91,143,241,0.2); }
-
   .bento-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55); }
   .bento.blue .bento-label { color:#5b8ff1; }
   .bento-value { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 8px rgba(91,143,241,0.25)); }
   .bento-value.white { background:none;-webkit-background-clip:unset;background-clip:unset;color:rgba(255,255,255,0.35);filter:none; }
   .bento-sub { font-size:clamp(11px,0.85vw,14px);font-weight:500;color:rgba(255,255,255,0.62);line-height:1.3; }
 
-  /* LP Conversion bars */
   .conv-rows { display:flex;flex-direction:column;gap:1.2vh; }
   .conv-row { display:flex;flex-direction:column;gap:0.4vh; }
   .conv-top { display:flex;justify-content:space-between;align-items:center; }
@@ -69,7 +57,6 @@
   .bar-wrap { width:100%;height:5px;background:rgba(255,255,255,0.07);border-radius:3px; }
   .bar-fill { height:5px;border-radius:3px; }
 
-  /* Fact box */
   .fact-box { border-radius:12px;background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.18);padding:clamp(10px,1.2vh,16px) clamp(14px,1.4vw,20px); }
   .fact-text { font-size:clamp(13px,1.05vw,17px);font-weight:700;color:rgba(255,255,255,0.9);line-height:1.45; }
   .fact-text em { font-style:normal;color:#5b8ff1; }
@@ -79,19 +66,15 @@
 <div class="slide-wrap">
   <div class="bg"></div>
   <div class="slide">
-
     <div class="header">
       <div class="brand">neubau<span>.</span>marketing</div>
       <div class="slide-num">04 / 10</div>
     </div>
-
     <div class="body">
-
       <div>
         <div class="eyebrow">Zahlen &amp; Vergleich</div>
         <div class="headline">Die Zahlen l&uuml;gen nicht.<br><span class="hl">~35&times; g&uuml;nstiger pro Anfrage.</span></div>
       </div>
-
       <div class="main">
 
         <!-- LEFT: CPL Chart -->
@@ -103,7 +86,7 @@
             </div>
             <div style="display:flex;gap:1.5vw;margin-top:1vh;flex-wrap:wrap;">
               <div style="display:flex;align-items:center;gap:6px;font-size:clamp(10px,0.8vw,13px);color:rgba(255,255,255,0.5);">
-                <div style="width:12px;height:12px;border-radius:3px;background:#888780;"></div>Portal-Durchschnitt
+                <div style="width:12px;height:12px;border-radius:3px;background:rgba(136,135,128,0.7);"></div>Portal-Durchschnitt
               </div>
               <div style="display:flex;align-items:center;gap:6px;font-size:clamp(10px,0.8vw,13px);color:rgba(255,255,255,0.5);">
                 <div style="width:12px;height:12px;border-radius:3px;background:#5b8ff1;"></div>neubau.marketing Cases
@@ -112,79 +95,77 @@
           </div>
         </div>
 
-        <!-- RIGHT: Metriken + LP Conv -->
+        <!-- RIGHT -->
         <div class="right">
 
-          <!-- Bento Grid: 4 Kennzahlen -->
           <div class="bento-grid">
             <div class="bento blue">
-              <div class="bento-label">Günstigster CPL</div>
-              <div class="bento-value">10,16 €</div>
-              <div class="bento-sub">bosch &amp; co.</div>
+              <div class="bento-label">G&uuml;nstigster CPL</div>
+              <div class="bento-value">17,30 &euro;</div>
+              <div class="bento-sub">Bank 1 Saar</div>
             </div>
             <div class="bento blue">
               <div class="bento-label">Teuerster CPL</div>
-              <div class="bento-value">36,10 €</div>
+              <div class="bento-value">36,10 &euro;</div>
               <div class="bento-sub">hanikabau</div>
             </div>
             <div class="bento">
-              <div class="bento-label">Portal Ø CPL</div>
-              <div class="bento-value white">~600 €</div>
-              <div class="bento-sub">Bei 5 Anfragen / 3.000 € Abo</div>
+              <div class="bento-label">Portal &Oslash; CPL</div>
+              <div class="bento-value white">~600 &euro;</div>
+              <div class="bento-sub">Bei 5 Anfragen / 3.000 &euro; Abo</div>
             </div>
             <div class="bento blue">
-              <div class="bento-label">Faktor günstiger</div>
+              <div class="bento-label">Faktor g&uuml;nstiger</div>
               <div class="bento-value">~35&times;</div>
-              <div class="bento-sub">Portal vs. unser Ø CPL</div>
+              <div class="bento-sub">Portal vs. unser &Oslash; CPL</div>
             </div>
           </div>
 
-          <!-- LP Conversion Rates -->
+          <!-- LP Conv -->
           <div class="card" style="flex:1;display:flex;flex-direction:column;">
-            <div class="card-label">Landingpage Conversion Rate — Besucher zu Anfrage</div>
+            <div class="card-label">Landingpage Conversion Rate &mdash; Besucher zu Anfrage</div>
             <div class="conv-rows">
               <div class="conv-row">
                 <div class="conv-top">
                   <div class="conv-name">Marktdurchschnitt</div>
-                  <div class="conv-pct grey">2–4%</div>
+                  <div class="conv-pct grey">2&ndash;4%</div>
                 </div>
                 <div class="bar-wrap"><div class="bar-fill" style="width:12%;background:rgba(255,255,255,0.2);"></div></div>
               </div>
               <div class="conv-row">
                 <div class="conv-top">
-                  <div class="conv-name">Bank 1 Saar</div>
+                  <div class="conv-name">bosch &amp; co. &mdash; M50 Gunzenhausen</div>
+                  <div class="conv-pct">~6,8%</div>
+                </div>
+                <div class="bar-wrap"><div class="bar-fill" style="width:46%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
+              </div>
+              <div class="conv-row">
+                <div class="conv-top">
+                  <div class="conv-name">Bank 1 Saar &mdash; Quartier Jenneweg</div>
                   <div class="conv-pct">~6%</div>
                 </div>
-                <div class="bar-wrap"><div class="bar-fill" style="width:30%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
+                <div class="bar-wrap"><div class="bar-fill" style="width:40%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
               </div>
               <div class="conv-row">
                 <div class="conv-top">
-                  <div class="conv-name">bosch &amp; co.</div>
-                  <div class="conv-pct">8,2%</div>
-                </div>
-                <div class="bar-wrap"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
-              </div>
-              <div class="conv-row">
-                <div class="conv-top">
-                  <div class="conv-name">BSK Immobilien Berlin</div>
-                  <div class="conv-pct">9–10%</div>
+                  <div class="conv-name">BSK Immobilien &mdash; Kranoldplatz Berlin</div>
+                  <div class="conv-pct">9&ndash;10%</div>
                 </div>
                 <div class="bar-wrap"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
               </div>
             </div>
           </div>
 
-          <!-- Fact box -->
+          <!-- Fact -->
           <div class="fact-box">
             <div class="fact-text">
-              hanikabau: Termine von <em>1&ndash;2/Monat auf 10 im Februar 2026</em> &mdash; nach Einf&uuml;hrung der telefonischen Vorqualifizierung. <em>+500%</em> in einem Monat.
+              hanikabau: Termine von <em>1&ndash;2/Monat auf 10 im Februar 2026</em> nach Einf&uuml;hrung der Vorqualifizierung &mdash; <em>+500%</em> in einem Monat.
             </div>
           </div>
 
         </div>
       </div>
     </div>
-
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
       <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
@@ -196,16 +177,14 @@
 window.addEventListener('load', function() {
   const muted = 'rgba(240,242,247,0.4)';
   const grid  = 'rgba(240,242,247,0.07)';
-  const blue  = '#5b8ff1';
-  const grey  = 'rgba(136,135,128,0.7)';
 
   new Chart(document.getElementById('c_cpl'), {
     type: 'bar',
     data: {
-      labels: ['Portal Ø', 'bosch & co.', 'Bank 1 Saar', 'BSK Berlin', 'hanikabau'],
+      labels: ['Portal \u00D8', 'Bank 1 Saar', 'bosch & co.', 'BSK Berlin', 'hanikabau'],
       datasets: [{
-        data: [600, 10.16, 17.30, 22.12, 36.10],
-        backgroundColor: [grey, blue, blue, blue, blue],
+        data: [600, 17.30, 18.21, 22.12, 36.10],
+        backgroundColor: ['rgba(136,135,128,0.7)', '#5b8ff1', '#5b8ff1', '#5b8ff1', '#5b8ff1'],
         borderRadius: 7,
         borderSkipped: false
       }]
@@ -217,24 +196,13 @@ window.addEventListener('load', function() {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: ctx => ' ' + ctx.parsed.y.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' €'
+            label: ctx => ' ' + ctx.parsed.y.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' \u20AC'
           }
         }
       },
       scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: muted, font: { size: 11, weight: '600' } }
-        },
-        y: {
-          grid: { color: grid },
-          ticks: {
-            color: muted,
-            font: { size: 10 },
-            callback: v => v + ' €'
-          },
-          max: 700
-        }
+        x: { grid:{display:false}, ticks:{color:muted, font:{size:11, weight:'600'}} },
+        y: { grid:{color:grid}, ticks:{color:muted, font:{size:10}, callback: v => v+' \u20AC'}, max:700 }
       }
     }
   });
