@@ -3,50 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slide 10 – neubau.marketing Pitch Deck</title>
+<title>Slide 10 – Nächster Schritt</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html,body{width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff;}
-  .slide-wrap{position:fixed;inset:0;width:100vw;height:100vh;background:#2c313c;overflow:hidden;z-index:0;}
-  .bg{position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none;}
-  .bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
-  .slide{position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1;}
-  .header{display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0;}
-  .brand{font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em;color:#ffffff;}
-  .brand span{color:#5b8ff1;}
-  .slide-num{font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700;}
-  .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3vh;}
-  .wip-box{border-radius:20px;border:1px dashed rgba(91,143,241,0.35);background:rgba(91,143,241,0.05);padding:5vh 6vw;display:flex;flex-direction:column;align-items:center;gap:2vh;text-align:center;}
-  .wip-icon{font-size:clamp(32px,4vw,56px);opacity:0.5;}
-  .wip-label{font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#5b8ff1;}
-  .wip-title{font-size:clamp(24px,2.8vw,44px);font-weight:900;color:rgba(255,255,255,0.85);line-height:1.1;}
-  .wip-sub{font-size:clamp(13px,1.05vw,17px);font-weight:400;color:rgba(255,255,255,0.45);}
-  .footer{padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0;}
-  .footer::before{content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15);}
-  .footer-text{font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh;}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;width:100vw;height:100vh;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg {
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.14) 0%,transparent 55%),
+      radial-gradient(ellipse 60vw 60vh at -10% 100%,rgba(91,143,241,0.10) 0%,transparent 60%),
+      radial-gradient(ellipse 50vw 50vh at 50% 50%,rgba(91,143,241,0.05) 0%,transparent 70%);
+    pointer-events:none;
+    animation:bgpulse 6s ease-in-out infinite;
+  }
+  @keyframes bgpulse { 0%,100%{opacity:1;} 50%{opacity:0.7;} }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em;color:#ffffff; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+
+  .body { flex:1;display:flex;gap:2.5vw;padding:2vh 4.5vw 2vh;min-height:0; }
+
+  /* ── LEFT ── */
+  .left { flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.5vh;min-width:0; }
+
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+
+  .headline { font-size:clamp(28px,3.8vw,62px);font-weight:900;line-height:1.05;color:#ffffff; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+
+  .partner-line {
+    font-size:clamp(14px,1.2vw,20px);
+    font-weight:700;
+    color:rgba(255,255,255,0.82);
+    line-height:1.5;
+    padding:clamp(10px,1.2vh,16px) clamp(14px,1.4vw,20px);
+    border-radius:12px;
+    background:rgba(91,143,241,0.07);
+    border:1px solid rgba(91,143,241,0.2);
+  }
+  .partner-line em { font-style:normal;color:#5b8ff1; }
+
+  /* Steps */
+  .steps { display:flex;flex-direction:column;gap:0; }
+  .step-row { display:flex;gap:1.4vw;align-items:stretch; }
+  .step-left { display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:clamp(30px,2.8vw,44px); }
+  .step-num { width:clamp(30px,2.8vw,44px);height:clamp(30px,2.8vw,44px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:clamp(11px,1vw,16px);font-weight:900;flex-shrink:0;background:rgba(91,143,241,0.15);border:1px solid rgba(91,143,241,0.35);color:#5b8ff1;position:relative;z-index:1; }
+  .step-num.final { background:rgba(52,199,89,0.15);border-color:rgba(52,199,89,0.4);color:#34c759; }
+  .step-connector { width:1px;flex:1;background:rgba(91,143,241,0.2);margin:3px 0; }
+  .step-content { flex:1;padding-bottom:2vh;display:flex;flex-direction:column;gap:0.3vh; }
+  .step-row:last-child .step-content { padding-bottom:0; }
+  .step-title { font-size:clamp(13px,1.1vw,18px);font-weight:700;color:#ffffff;line-height:1.2; }
+  .step-title.final { color:#34c759; }
+  .step-desc { font-size:clamp(11px,0.9vw,15px);font-weight:400;color:rgba(255,255,255,0.6);line-height:1.5; }
+
+  /* ── RIGHT ── */
+  .right { width:32vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vh;justify-content:center; }
+
+  /* Price card */
+  .price-card {
+    border-radius:16px;
+    background:linear-gradient(145deg,rgba(91,143,241,0.12) 0%,rgba(91,143,241,0.04) 100%);
+    border:1px solid rgba(91,143,241,0.3);
+    box-shadow:0 0 60px rgba(91,143,241,0.12),inset 0 0 40px rgba(91,143,241,0.04);
+    padding:clamp(16px,1.8vh,26px) clamp(16px,1.6vw,24px);
+    position:relative;overflow:hidden;
+  }
+  .price-card::before { content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
+
+  .price-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#5b8ff1;margin-bottom:1vh; }
+
+  .price-options { display:flex;flex-direction:column;gap:0.8vh;margin-bottom:1.5vh; }
+  .price-option { display:flex;align-items:center;justify-content:space-between;padding:clamp(8px,1vh,13px) clamp(12px,1.2vw,18px);border-radius:10px; }
+  .price-option.standard { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09); }
+  .price-option.preferred { background:rgba(91,143,241,0.12);border:1px solid rgba(91,143,241,0.3); }
+  .po-dur { font-size:clamp(12px,0.95vw,16px);color:rgba(255,255,255,0.65);font-weight:400; }
+  .po-val { font-size:clamp(14px,1.3vw,20px);font-weight:900;color:#ffffff; }
+  .po-val.disc { color:#5b8ff1; }
+  .po-badge { font-size:clamp(9px,0.75vw,12px);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:#5b8ff1;color:#ffffff; }
+
+  .price-divider { height:1px;background:rgba(91,143,241,0.2);margin:0.5vh 0 1vh; }
+
+  .price-includes { display:flex;flex-wrap:wrap;gap:0.5vw; }
+  .pi-badge { font-size:clamp(9px,0.75vw,12px);font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.1); }
+
+  /* Trust block */
+  .trust-card {
+    border-radius:14px;
+    background:rgba(52,199,89,0.06);
+    border:1px solid rgba(52,199,89,0.2);
+    padding:clamp(12px,1.4vh,18px) clamp(14px,1.4vw,20px);
+    display:flex;flex-direction:column;gap:0.8vh;
+  }
+  .trust-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(52,199,89,0.8); }
+  .trust-row { display:flex;align-items:flex-start;gap:0.8vw;font-size:clamp(12px,0.92vw,15px);color:rgba(255,255,255,0.82);line-height:1.4; }
+  .trust-check { color:#34c759;flex-shrink:0;margin-top:1px; }
+
+  /* CTA button */
+  .cta-box {
+    border-radius:14px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:clamp(12px,1.4vh,18px) clamp(14px,1.4vw,20px);
+    display:flex;flex-direction:column;gap:0.6vh;
+    text-align:center;
+    align-items:center;
+  }
+  .cta-title { font-size:clamp(14px,1.2vw,19px);font-weight:900;color:#ffffff; }
+  .cta-sub { font-size:clamp(11px,0.88vw,14px);color:rgba(255,255,255,0.55);line-height:1.4; }
+  .cta-url { font-size:clamp(12px,0.95vw,16px);font-weight:700;color:#5b8ff1;letter-spacing:0.04em;margin-top:0.3vh; }
 </style>
 </head>
 <body>
 <div class="slide-wrap">
   <div class="bg"></div>
   <div class="slide">
+
     <div class="header">
       <div class="brand">neubau<span>.</span>marketing</div>
       <div class="slide-num">10 / 10</div>
     </div>
-    <div class="center">
-      <div class="wip-box">
-        <div class="wip-icon">&#9881;</div>
-        <div class="wip-label">Work in Progress</div>
-        <div class="wip-title">N&auml;chster Schritt</div>
-        <div class="wip-sub">Diese Slide wird gerade ausgearbeitet &mdash; in K&uuml;rze verf&uuml;gbar.</div>
+
+    <div class="body">
+
+      <!-- LEFT -->
+      <div class="left">
+        <div>
+          <div class="eyebrow">N&auml;chster Schritt</div>
+          <div class="headline">
+            So starten wir<br><span class="hl">gemeinsam.</span>
+          </div>
+        </div>
+
+        <div class="partner-line">
+          Kein Dienstleister. Kein Knebelvertrag.<br>
+          <em>Ein Wachstumspartner der mit Ihnen skaliert &mdash; von Projekt zu Projekt.</em>
+        </div>
+
+        <div class="steps">
+          <div class="step-row">
+            <div class="step-left"><div class="step-num">1</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title">Kontingent best&auml;tigen</div>
+              <div class="step-desc">Laufzeit w&auml;hlen, Angebot unterzeichnen &mdash; in 24 Stunden bei Ihnen.</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-left"><div class="step-num">2</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title">Onboarding-Termin</div>
+              <div class="step-desc">Briefing, Projektunterlagen, Zielgruppenanalyse &mdash; ca. 1 Stunde, remote oder vor Ort.</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-left"><div class="step-num">3</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title">Setup &amp; Fulfillment</div>
+              <div class="step-desc">Landingpage, Creatives, Neobau Solutions CRM &mdash; parallel, 5&ndash;7 Werktage.</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-left"><div class="step-num final">4</div></div>
+            <div class="step-content">
+              <div class="step-title final">Go-Live &mdash; Erste Anfragen in Woche 1</div>
+              <div class="step-desc">Kampagne aktiv. Pipeline l&auml;uft. Ergebnisse messbar ab Tag 1.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+
+        <!-- Price -->
+        <div class="price-card">
+          <div class="price-label">Investment &mdash; 1 Kontingent = 1 Projekt</div>
+          <div class="price-options">
+            <div class="price-option standard">
+              <div class="po-dur">3 Monate Mindestlaufzeit</div>
+              <div class="po-val">2.200 &euro; / Monat</div>
+            </div>
+            <div class="price-option preferred">
+              <div class="po-dur">4&ndash;6 Monate</div>
+              <div class="po-val disc">2.000 &euro; / Monat</div>
+              <div class="po-badge">Empfohlen</div>
+            </div>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-includes">
+            <div class="pi-badge">Kampagnenmanagement</div>
+            <div class="pi-badge">Landingpage</div>
+            <div class="pi-badge">Creatives</div>
+            <div class="pi-badge">Neobau Solutions CRM</div>
+            <div class="pi-badge">Vertriebsberatung</div>
+            <div class="pi-badge">W&ouml;chentliche Meetings</div>
+          </div>
+        </div>
+
+        <!-- Trust -->
+        <div class="trust-card">
+          <div class="trust-label">&#10003;&nbsp; Ihre Sicherheit</div>
+          <div class="trust-row"><div class="trust-check">&#10003;</div>Kein Knebelvertrag &mdash; monatlich k&uuml;ndbar nach Mindestlaufzeit</div>
+          <div class="trust-row"><div class="trust-check">&#10003;</div>Vollzugriff auf alle Konten &amp; Daten &mdash; jederzeit</div>
+          <div class="trust-row"><div class="trust-check">&#10003;</div>Sie reden direkt mit uns &mdash; kein Junior, kein Ticketsystem</div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box">
+          <div class="cta-title">60 Minuten. Kein Pitch. Nur Klarheit.</div>
+          <div class="cta-sub">Termin direkt buchen &mdash; wir analysieren Ihren Vertriebsprozess, ehrlich und konkret.</div>
+          <div class="cta-url">neubau.marketing</div>
+        </div>
+
       </div>
     </div>
+
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
       <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
     </div>
+
   </div>
 </div>
 </body>
