@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slide 06 – Case BSK Immobilien</title>
+<title>Slide 06 – Case BSK Berliner Sparkasse</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -23,7 +23,7 @@
   .body { flex:1;display:flex;gap:1.8vw;padding:2vh 4.5vw 2vh;min-height:0; }
 
   /* LEFT */
-  .left { width:38vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.6vh; }
+  .left { width:38vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vh; }
   .case-tag { display:inline-flex;align-items:center;gap:0.6vw;padding:0.5vh 1vw;border-radius:20px;background:rgba(91,143,241,0.1);border:1px solid rgba(91,143,241,0.25);font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5b8ff1;width:fit-content; }
   .case-title { font-size:clamp(24px,2.8vw,44px);font-weight:900;line-height:1.05;color:#ffffff; }
   .case-title .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
@@ -56,28 +56,30 @@
   .card-lbl { font-size:clamp(11px,0.88vw,14px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:1vh;flex-shrink:0; }
   .chart-wrap { flex:1;min-height:0;position:relative; }
 
-  /* Tag 16 highlight */
-  .highlight-row { display:flex;gap:1.2vw;align-items:center;flex-shrink:0; }
-  .hl-box { flex:1;border-radius:12px;padding:clamp(10px,1.2vh,16px);display:flex;flex-direction:column;gap:0.4vh; }
-  .hl-box.speed { background:rgba(52,199,89,0.08);border:1px solid rgba(52,199,89,0.25); }
-  .hl-box.lp { background:rgba(91,143,241,0.08);border:1px solid rgba(91,143,241,0.2); }
-  .hl-lbl { font-size:clamp(10px,0.8vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase; }
-  .hl-box.speed .hl-lbl { color:rgba(52,199,89,0.8); }
-  .hl-box.lp .hl-lbl { color:#5b8ff1; }
-  .hl-val { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1; }
-  .hl-box.speed .hl-val { color:#34c759; }
-  .hl-box.lp .hl-val { background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
-  .hl-sub { font-size:clamp(11px,0.85vw,14px);color:rgba(255,255,255,0.55);line-height:1.35; }
+  /* Konversions-Vergleich */
+  .conv-compare { display:flex;gap:1vw;align-items:center; }
+  .conv-box { flex:1;border-radius:10px;padding:clamp(10px,1.1vh,15px);display:flex;flex-direction:column;gap:0.4vh; }
+  .conv-box.before { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08); }
+  .conv-box.after { background:rgba(91,143,241,0.1);border:1px solid rgba(91,143,241,0.25); }
+  .conv-lbl { font-size:clamp(9px,0.78vw,12px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase; }
+  .conv-box.before .conv-lbl { color:rgba(255,255,255,0.4); }
+  .conv-box.after .conv-lbl { color:#5b8ff1; }
+  .conv-val { font-size:clamp(20px,2.4vw,36px);font-weight:900;line-height:1; }
+  .conv-box.before .conv-val { color:rgba(255,255,255,0.3); }
+  .conv-box.after .conv-val { background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .conv-desc { font-size:clamp(11px,0.82vw,14px);line-height:1.35; }
+  .conv-box.before .conv-desc { color:rgba(255,255,255,0.4); }
+  .conv-box.after .conv-desc { color:rgba(255,255,255,0.7); }
+  .conv-arrow { font-size:clamp(16px,1.8vw,26px);color:rgba(91,143,241,0.5);font-weight:900;flex-shrink:0; }
 
   /* ROI strip */
   .roi-strip { border-radius:12px;background:linear-gradient(145deg,rgba(91,143,241,0.12) 0%,rgba(91,143,241,0.04) 100%);border:1px solid rgba(91,143,241,0.28);padding:clamp(10px,1.2vh,16px) clamp(14px,1.4vw,20px);display:flex;align-items:center;justify-content:space-between;gap:1vw;flex-shrink:0; }
-  .roi-main { display:flex;flex-direction:column;gap:0.2vh; }
   .roi-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#5b8ff1; }
-  .roi-val { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px rgba(91,143,241,0.35)); }
+  .roi-val { font-size:clamp(16px,1.8vw,28px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent; }
   .roi-divider { width:1px;align-self:stretch;background:rgba(91,143,241,0.2); }
   .roi-detail { display:flex;flex-direction:column;gap:0.3vh; }
   .roi-d-lbl { font-size:clamp(10px,0.8vw,13px);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45); }
-  .roi-d-val { font-size:clamp(14px,1.3vw,21px);font-weight:700;color:#ffffff; }
+  .roi-d-val { font-size:clamp(13px,1.2vw,19px);font-weight:700;color:#ffffff; }
 </style>
 </head>
 <body>
@@ -94,69 +96,73 @@
 
       <!-- LEFT -->
       <div class="left">
-        <div class="case-tag">Case 02 &middot; Bautr&auml;ger &middot; Berlin</div>
-        <div class="case-title">BSK Immobilien &mdash;<br><span class="hl">Kranoldplatz Berlin.</span></div>
-        <div class="case-sub">9 Wochen. 6.364 &euro; Mediabudget.<br>Erste Beurkundung 16 Tage nach Go-Live.</div>
+        <div class="case-tag">Case 02 &middot; Sparkasse &middot; Berlin</div>
+        <div class="case-title">Berliner Sparkasse &mdash;<br><span class="hl">Kranoldplatz Berlin.</span></div>
+        <div class="case-sub">Zweitgr&ouml;&szlig;te Sparkasse Deutschlands &middot; 9 Wochen &middot; Kampagne aktiv</div>
 
         <div class="bento-grid">
           <div class="bento hero">
             <div class="bento-lbl">Beurkundungen</div>
-            <div class="bento-val white">4</div>
-            <div class="bento-sub">notariell &middot; Kampagne l&auml;uft</div>
+            <div class="bento-val green">4</div>
+            <div class="bento-sub">notariell &middot; Kampagne l&auml;uft weiter</div>
           </div>
           <div class="bento blue">
             <div class="bento-lbl">Anfragen gesamt</div>
             <div class="bento-val">229</div>
-            <div class="bento-sub">in 9 Wochen</div>
+            <div class="bento-sub">in 9 Wochen &middot; Ø 25/Woche</div>
           </div>
           <div class="bento blue">
             <div class="bento-lbl">Cost per Lead</div>
             <div class="bento-val">27,79 &euro;</div>
-            <div class="bento-sub">auf 6.364 &euro; Mediabudget</div>
+            <div class="bento-sub">vs. Portal-&Oslash; ~600 &euro; = <strong>~22&times; g&uuml;nstiger</strong></div>
           </div>
           <div class="bento blue">
-            <div class="bento-lbl">Anfragen / Woche</div>
-            <div class="bento-val">~25</div>
-            <div class="bento-sub">Ø &uuml;ber Gesamtlaufzeit</div>
+            <div class="bento-lbl">LP Conversion</div>
+            <div class="bento-val">7,3%</div>
+            <div class="bento-sub">229 / 3.135 Besucher &middot; Markt: 2&ndash;4%</div>
           </div>
         </div>
 
         <div class="context-box">
           <div class="ctx-label">Ausgangslage &amp; Ergebnis</div>
-          <div class="ctx-row"><div class="ctx-dot" style="background:rgba(255,100,100,0.7);"></div>Mitbewerber ohne Erfolg getestet, kaum verwertbare Portalanfragen</div>
-          <div class="ctx-row"><div class="ctx-dot" style="background:rgba(255,100,100,0.7);"></div>Kein strukturierter Nachfassprozess &mdash; Anfragen versandeten</div>
-          <div class="ctx-row"><div class="ctx-dot" style="background:#5b8ff1;"></div>4 Beurkundungen in 9 Wochen &mdash; Kampagne weiter aktiv, Pipeline w&auml;chst</div>
+          <div class="ctx-row"><div class="ctx-dot" style="background:rgba(255,100,100,0.7);"></div>Mitbewerber ohne Erfolg getestet &mdash; kaum verwertbare Portalanfragen</div>
+          <div class="ctx-row"><div class="ctx-dot" style="background:rgba(255,100,100,0.7);"></div>Kein Nachfassprozess &mdash; Anfragen versandeten im Tagesgesch&auml;ft</div>
+          <div class="ctx-row"><div class="ctx-dot" style="background:#5b8ff1;"></div>Erste Reservierung Tag 16 &middot; 4 Beurkundungen in 9 Wochen &middot; Pipeline w&auml;chst</div>
         </div>
       </div>
 
       <!-- RIGHT -->
       <div class="right">
 
-        <!-- Kumulierter Chart -->
+        <!-- Chart -->
         <div class="card" style="flex:1;">
           <div class="card-lbl">Anfragen kumuliert &mdash; seit 09. M&auml;rz 2026</div>
           <div class="chart-wrap"><canvas id="c_bsk"></canvas></div>
         </div>
 
-        <!-- Tag 16 + LP Conv -->
-        <div class="highlight-row">
-          <div class="hl-box speed">
-            <div class="hl-lbl">Schnelligkeit</div>
-            <div class="hl-val">Tag 16</div>
-            <div class="hl-sub">Erste Reservierung &mdash;<br>16 Tage nach Kampagnenstart</div>
-          </div>
-          <div class="hl-box lp">
-            <div class="hl-lbl">LP Conversion Rate</div>
-            <div class="hl-val">7,3%</div>
-            <div class="hl-sub">229 Anfragen / 3.135 Besucher<br>Marktdurchschnitt: 2&ndash;4%</div>
+        <!-- Konversionsrate Vergleich -->
+        <div class="card" style="flex-shrink:0;">
+          <div class="card-lbl">Konversionsrate &mdash; Anfrage zu Beurkundung</div>
+          <div class="conv-compare">
+            <div class="conv-box before">
+              <div class="conv-lbl">Portal-Durchschnitt</div>
+              <div class="conv-val">~0,5%</div>
+              <div class="conv-desc">Branchenrichtwert 0,5&ndash;1,5%</div>
+            </div>
+            <div class="conv-arrow">&#8594;</div>
+            <div class="conv-box after">
+              <div class="conv-lbl">Berliner Sparkasse &mdash; Mit System</div>
+              <div class="conv-val">1,7%</div>
+              <div class="conv-desc">4 Beurkundungen / 229 Anfragen &mdash; <strong>~3,5&times; h&ouml;here Konversionsrate</strong></div>
+            </div>
           </div>
         </div>
 
         <!-- ROI Strip -->
         <div class="roi-strip">
-          <div class="roi-main">
-            <div class="roi-label">Kampagne aktiv &mdash; Stand 12.05.2026</div>
-            <div class="roi-val">229 Anfragen</div>
+          <div class="roi-detail">
+            <div class="roi-label">Stand 12.05.2026 &mdash; Kampagne aktiv</div>
+            <div class="roi-val">229 Anfragen &middot; 4 Beurkundungen</div>
           </div>
           <div class="roi-divider"></div>
           <div class="roi-detail">
@@ -170,8 +176,13 @@
           </div>
           <div class="roi-divider"></div>
           <div class="roi-detail">
-            <div class="roi-d-lbl">Beurkundungen</div>
-            <div class="roi-d-val" style="color:#34c759;">4 notariell</div>
+            <div class="roi-d-lbl">Erste Reservierung</div>
+            <div class="roi-d-val" style="color:#34c759;">Tag 16</div>
+          </div>
+          <div class="roi-divider"></div>
+          <div class="roi-detail">
+            <div class="roi-d-lbl">vs. Portal CPL</div>
+            <div class="roi-d-val" style="color:#5b8ff1;">~22&times; g&uuml;nstiger</div>
           </div>
         </div>
 
@@ -191,8 +202,6 @@ window.addEventListener('load', function() {
   const grid  = 'rgba(240,242,247,0.07)';
   const blue  = '#5b8ff1';
 
-  // Wochenwerte: Woche 1-5 belegt (142 kumuliert), Woche 9 = 229
-  // Wochen 6-9 interpoliert
   new Chart(document.getElementById('c_bsk'), {
     type: 'line',
     data: {
@@ -214,11 +223,7 @@ window.addEventListener('load', function() {
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => ' ' + ctx.parsed.y + ' Anfragen (kumuliert)'
-          }
-        }
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y + ' Anfragen (kumuliert)' } }
       },
       scales: {
         x: { grid:{color:grid}, ticks:{color:muted, font:{size:10}, maxRotation:0} },
