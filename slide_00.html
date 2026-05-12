@@ -7,290 +7,101 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html, body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    font-family: 'Roboto', sans-serif;
-    background: #2c313c !important;
-    color: #ffffff;
-  }
-
-  .slide-wrap {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #2c313c;
-    overflow: hidden;
-    z-index: 0;
-  }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;width:100vw;height:100vh;background:#2c313c;overflow:hidden;z-index:0; }
 
   .bg {
-    position: absolute;
-    inset: 0;
+    position:absolute;inset:0;
     background:
-      radial-gradient(ellipse 80vw 70vh at 80% -15%, rgba(91,143,241,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse 50vw 50vh at -10% 95%, rgba(91,143,241,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 40vw 40vh at 50% 50%, rgba(91,143,241,0.04) 0%, transparent 70%);
-    pointer-events: none;
-    animation: bgpulse 6s ease-in-out infinite;
+      radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.10) 0%,transparent 55%),
+      radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.06) 0%,transparent 60%),
+      radial-gradient(ellipse 40vw 40vh at 50% 50%,rgba(91,143,241,0.03) 0%,transparent 70%);
+    pointer-events:none;
+    animation:bgpulse 6s ease-in-out infinite;
   }
+  @keyframes bgpulse { 0%,100%{opacity:1;} 50%{opacity:0.6;} }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
 
-  @keyframes bgpulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.6; }
-  }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
 
-  .bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-  }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em;color:#ffffff; }
+  .brand span { color:#5b8ff1; }
 
-  /* ── SLIDE LAYOUT ── */
-  .slide {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 3vh 4.5vw 0;
-    flex-shrink: 0;
-  }
-
-  .brand {
-    font-size: clamp(14px, 1.1vw, 18px);
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    color: #ffffff;
-  }
-  .brand span { color: #5b8ff1; }
-
-  /* ── BODY ── */
-  .body {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: 2vh 4.5vw 2vh;
-    gap: 6vw;
-    min-height: 0;
-  }
+  .body { flex:1;display:flex;gap:2.5vw;padding:2vh 4.5vw 2vh;align-items:center;min-height:0; }
 
   /* ── LEFT ── */
-  .left {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 3vh;
-    animation: fadein 0.8s ease both;
-  }
+  .left { flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3vh;animation:fadein 0.8s ease both; }
+  @keyframes fadein { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
 
-  @keyframes fadein {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .logo-wrap img { width:clamp(200px,22vw,360px);height:auto;display:block; }
 
-  /* Eyebrow — clamp(12px, 1vw, 16px) */
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-    font-size: clamp(12px, 1vw, 16px);
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #5b8ff1;
-  }
-  .eyebrow::before {
-    content: '';
-    height: 1px;
-    width: 2.5vw;
-    background: rgba(91,143,241,0.5);
-    flex-shrink: 0;
-  }
-
-  /* Headline groß */
-  .headline {
-    font-size: clamp(32px, 4.5vw, 72px);
-    font-weight: 900;
-    line-height: 1.05;
-  }
-
-  .headline .wh { color: #ffffff; display: block; }
+  .headline { font-size:clamp(32px,4.5vw,72px);font-weight:900;line-height:1.05; }
+  .headline .wh { color:#ffffff;display:block; }
   .headline .bl {
-    display: block;
-    font-style: italic;
-    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 50%, #3d5a9e 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    display:block;font-style:italic;
+    background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
   }
 
-  /* Subline */
-  .subline {
-    font-size: clamp(16px, 1.3vw, 22px);
-    font-weight: 400;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.65;
-    max-width: 36vw;
-  }
+  .subline { font-size:clamp(16px,1.3vw,22px);font-weight:700;color:rgba(255,255,255,0.82);line-height:1.55;max-width:34vw; }
+  .subline em { font-style:normal;color:#5b8ff1; }
 
-  /* Hook-Box */
+  /* Hook box */
   .hook {
-    display: inline-flex;
-    align-items: center;
-    gap: 1vw;
-    padding: clamp(12px, 1.4vh, 18px) clamp(16px, 1.6vw, 24px);
-    border-radius: 14px;
-    background: rgba(91,143,241,0.08);
-    border: 1px solid rgba(91,143,241,0.25);
-    box-shadow: 0 0 40px rgba(91,143,241,0.08);
-    max-width: fit-content;
+    display:flex;align-items:flex-start;gap:1.2vw;
+    padding:clamp(14px,1.6vh,22px) clamp(16px,1.6vw,24px);
+    border-radius:14px;
+    background:rgba(91,143,241,0.08);
+    border:1px solid rgba(91,143,241,0.25);
+    box-shadow:0 0 40px rgba(91,143,241,0.08);
+    max-width:36vw;
+    animation:fadein 0.8s ease 0.4s both;
   }
-
-  .hook-icon {
-    font-size: clamp(20px, 2vw, 32px);
-    flex-shrink: 0;
-  }
-
-  .hook-text {
-    font-size: clamp(14px, 1.2vw, 19px);
-    font-weight: 700;
-    color: rgba(255,255,255,0.92);
-    line-height: 1.4;
-  }
-
-  .hook-text em {
-    font-style: normal;
-    color: #5b8ff1;
-  }
+  .hook-icon { font-size:clamp(18px,1.6vw,26px);flex-shrink:0;margin-top:2px; }
+  .hook-text { font-size:clamp(13px,1.1vw,18px);font-weight:500;color:rgba(255,255,255,0.88);line-height:1.55; }
+  .hook-text strong { color:#5b8ff1;font-weight:700; }
 
   /* ── RIGHT — Stats ── */
-  .right {
-    width: 32vw;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.4vw;
-    animation: fadein 0.8s ease 0.3s both;
-  }
+  .right { width:30vw;flex-shrink:0;display:flex;flex-direction:column;gap:1.4vw;animation:fadein 0.8s ease 0.3s both; }
 
   .stat-card {
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.07);
-    background: rgba(255,255,255,0.03);
-    padding: clamp(14px, 1.6vh, 22px) clamp(16px, 1.6vw, 24px);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vh;
-    position: relative;
-    overflow: hidden;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,0.07);
+    background:rgba(255,255,255,0.03);
+    padding:clamp(14px,1.6vh,22px) clamp(16px,1.6vw,24px);
+    display:flex;flex-direction:column;gap:0.5vh;
+    position:relative;overflow:hidden;
   }
-
-  .stat-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 8%; right: 8%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.2), transparent);
-  }
-
+  .stat-card::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.2),transparent); }
   .stat-card.hero {
-    background: linear-gradient(145deg, rgba(91,143,241,0.10) 0%, rgba(91,143,241,0.03) 100%);
-    border-color: rgba(91,143,241,0.3);
-    box-shadow: 0 0 60px rgba(91,143,241,0.10), inset 0 0 40px rgba(91,143,241,0.04);
+    background:linear-gradient(145deg,rgba(91,143,241,0.10) 0%,rgba(91,143,241,0.03) 100%);
+    border-color:rgba(91,143,241,0.3);
+    box-shadow:0 0 60px rgba(91,143,241,0.10),inset 0 0 40px rgba(91,143,241,0.04);
   }
+  .stat-card.hero::after { left:5%;right:5%;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.6),transparent); }
 
-  .stat-card.hero::after {
-    left: 5%; right: 5%;
-    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.6), transparent);
-  }
-
-  /* Bento-Label */
-  .stat-label {
-    font-size: clamp(12px, 0.95vw, 15px);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-  }
-
-  /* Bento-Value */
+  .stat-label { font-size:clamp(12px,0.95vw,15px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65); }
+  .stat-card.hero .stat-label { color:#5b8ff1; }
   .stat-value {
-    font-size: clamp(28px, 3.5vw, 56px);
-    font-weight: 900;
-    line-height: 1;
-    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 0 12px rgba(91,143,241,0.3));
+    font-size:clamp(28px,3.5vw,56px);font-weight:900;line-height:1;
+    background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 60%,#3d5a9e 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 12px rgba(91,143,241,0.3));
   }
-
-  /* Bento-Sub */
-  .stat-sub {
-    font-size: clamp(12px, 0.95vw, 16px);
-    font-weight: 500;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.4;
-  }
-
-  /* Inline stat-row für kleine Karten */
-  .stat-row {
-    display: flex;
-    gap: 1.4vw;
-  }
-
-  .stat-row .stat-card {
-    flex: 1;
-  }
+  .stat-sub { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.72);line-height:1.4; }
+  .stat-row { display:flex;gap:1.4vw; }
+  .stat-row .stat-card { flex:1; }
 
   /* ── FOOTER ── */
-  .footer {
-    padding: 0 4.5vw 2.5vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 4.5vw; right: 4.5vw;
-    height: 1px;
-    background: rgba(255,255,255,0.15);
-  }
-
-  .footer-text {
-    font-size: clamp(12px, 0.95vw, 16px);
-    font-weight: 500;
-    color: rgba(255,255,255,0.75);
-    letter-spacing: 0.08em;
-    padding-top: 1.5vh;
-  }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
 </style>
 </head>
 <body>
-
 <div class="slide-wrap">
   <div class="bg"></div>
-
   <div class="slide">
 
     <div class="header">
@@ -301,7 +112,9 @@
 
       <!-- LEFT -->
       <div class="left">
-        <div class="eyebrow">Closing Deck 2026</div>
+        <div class="logo-wrap">
+          <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Logo/1.png" alt="neubau.marketing">
+        </div>
 
         <div class="headline">
           <span class="wh">Mehr Verk&auml;ufe.</span>
@@ -309,22 +122,21 @@
         </div>
 
         <div class="subline">
-          Das vollst&auml;ndige Konversionssystem f&uuml;r Neubauvermarktung &mdash;
-          von der ersten Anfrage bis zur Beurkundung.
+          Lead-Generierung ist <em>20&nbsp;%</em> des Problems.<br>
+          Die anderen <em>80&nbsp;%</em> entscheiden &uuml;ber Ihre Vorverkaufsquote.
         </div>
 
         <div class="hook">
           <div class="hook-icon">&#8594;</div>
           <div class="hook-text">
-            ImmoScout kostet Sie im Schnitt <em>300&ndash;1.000 &euro;</em> pro Anfrage.<br>
-            Unsere Kunden zahlen <em>10&ndash;36 &euro;</em> &mdash; belegt.
+            Mehr Projekte kommen in einen Markt, der noch z&ouml;gert.<br>
+            Wer jetzt keinen sauberen Vertriebsprozess hat, wird <strong>ungewollt zum Restantenproduzenten</strong> &mdash; w&auml;hrend ImmoScout Sie <strong>bis zu 35&times; mehr</strong> pro Anfrage kostet als unsere Kunden zahlen.
           </div>
         </div>
       </div>
 
-      <!-- RIGHT — Stats -->
+      <!-- RIGHT -->
       <div class="right">
-
         <div class="stat-card hero">
           <div class="stat-label">Return on Investment</div>
           <div class="stat-value">~181x</div>
@@ -333,23 +145,22 @@
 
         <div class="stat-row">
           <div class="stat-card">
-            <div class="stat-label">Kosten pro Anfrage</div>
+            <div class="stat-label">Cost per Lead</div>
             <div class="stat-value" style="font-size:clamp(22px,2.8vw,44px);">17,30 &euro;</div>
             <div class="stat-sub">Bank 1 Saar &middot; 301 Anfragen</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">Vorverkaufsquote</div>
             <div class="stat-value" style="font-size:clamp(22px,2.8vw,44px);">30%</div>
-            <div class="stat-sub">Baufinanzierung gesichert</div>
+            <div class="stat-sub">Baufinanzierung freigegeben</div>
           </div>
         </div>
 
         <div class="stat-card">
           <div class="stat-label">Erste Reservierung</div>
           <div class="stat-value" style="font-size:clamp(22px,2.8vw,44px);">Tag 16</div>
-          <div class="stat-sub">BSK Immobilien Berlin &middot; Kampagnenstart bis erste Reservierung</div>
+          <div class="stat-sub">BSK Immobilien Berlin &middot; nach Kampagnenstart</div>
         </div>
-
       </div>
 
     </div>
@@ -361,6 +172,5 @@
 
   </div>
 </div>
-
 </body>
 </html>
