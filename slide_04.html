@@ -5,49 +5,240 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Slide 04 – neubau.marketing Pitch Deck</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html,body{width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff;}
-  .slide-wrap{position:fixed;inset:0;width:100vw;height:100vh;background:#2c313c;overflow:hidden;z-index:0;}
-  .bg{position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%);pointer-events:none;}
-  .bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
-  .slide{position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1;}
-  .header{display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0;}
-  .brand{font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em;color:#ffffff;}
-  .brand span{color:#5b8ff1;}
-  .slide-num{font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700;}
-  .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3vh;}
-  .wip-box{border-radius:20px;border:1px dashed rgba(91,143,241,0.35);background:rgba(91,143,241,0.05);padding:5vh 6vw;display:flex;flex-direction:column;align-items:center;gap:2vh;text-align:center;}
-  .wip-icon{font-size:clamp(32px,4vw,56px);opacity:0.5;}
-  .wip-label{font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#5b8ff1;}
-  .wip-title{font-size:clamp(24px,2.8vw,44px);font-weight:900;color:rgba(255,255,255,0.85);line-height:1.1;}
-  .wip-sub{font-size:clamp(13px,1.05vw,17px);font-weight:400;color:rgba(255,255,255,0.45);}
-  .footer{padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0;}
-  .footer::before{content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15);}
-  .footer-text{font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh;}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width:100vw;height:100vh;overflow:hidden;font-family:'Roboto',sans-serif;background:#2c313c!important;color:#ffffff; }
+  .slide-wrap { position:fixed;inset:0;width:100vw;height:100vh;background:#2c313c;overflow:hidden;z-index:0; }
+  .bg { position:absolute;inset:0;background:radial-gradient(ellipse 80vw 70vh at 80% -15%,rgba(91,143,241,0.12) 0%,transparent 55%),radial-gradient(ellipse 50vw 50vh at -10% 95%,rgba(91,143,241,0.08) 0%,transparent 60%),radial-gradient(ellipse 40vw 40vh at 50% 50%,rgba(91,143,241,0.04) 0%,transparent 70%);pointer-events:none; }
+  .bg::after { content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none; }
+  .slide { position:relative;width:100%;height:100%;display:flex;flex-direction:column;z-index:1; }
+  .header { display:flex;align-items:center;justify-content:space-between;padding:3vh 4.5vw 0;flex-shrink:0; }
+  .brand { font-size:clamp(14px,1.1vw,18px);font-weight:700;letter-spacing:0.07em;color:#ffffff; }
+  .brand span { color:#5b8ff1; }
+  .slide-num { font-size:clamp(12px,0.95vw,16px);letter-spacing:0.14em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-weight:700; }
+  .body { flex:1;display:flex;flex-direction:column;padding:2vh 4.5vw 2vh;gap:2vh;min-height:0; }
+  .eyebrow { display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1vw,16px);font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#5b8ff1;margin-bottom:2vh; }
+  .eyebrow::before,.eyebrow::after { content:'';height:1px;width:2.5vw;background:rgba(91,143,241,0.5);flex-shrink:0; }
+  .headline { font-size:clamp(32px,4.5vw,72px);font-weight:900;line-height:1.05;color:#ffffff; }
+  .headline .hl { font-style:italic;background:linear-gradient(135deg,#5b8ff1 0%,#7aaaf5 50%,#3d5a9e 100%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+  .footer { padding:0 4.5vw 2.5vh;display:flex;align-items:center;justify-content:space-between;position:relative;flex-shrink:0; }
+  .footer::before { content:'';position:absolute;top:0;left:4.5vw;right:4.5vw;height:1px;background:rgba(255,255,255,0.15); }
+  .footer-text { font-size:clamp(12px,0.95vw,16px);font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.08em;padding-top:1.5vh; }
+
+  /* ── MAIN LAYOUT ── */
+  .main { display:flex;gap:1.5vw;flex:1;min-height:0; }
+
+  /* ── LEFT: CPL Chart ── */
+  .left { flex:1.2;display:flex;flex-direction:column;gap:1.4vh;min-width:0; }
+
+  /* ── RIGHT: Metriken + LP Conv ── */
+  .right { flex:1;display:flex;flex-direction:column;gap:1.4vh;min-width:0; }
+
+  /* Cards */
+  .card { border-radius:14px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(14px,1.5vh,20px) clamp(14px,1.4vw,22px);position:relative;overflow:hidden; }
+  .card::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.2),transparent); }
+  .card.hero { background:linear-gradient(145deg,rgba(91,143,241,0.10) 0%,rgba(91,143,241,0.03) 100%);border-color:rgba(91,143,241,0.25);box-shadow:0 0 50px rgba(91,143,241,0.08),inset 0 0 30px rgba(91,143,241,0.03); }
+  .card.hero::after { left:5%;right:5%;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.5),transparent); }
+
+  .card-label { font-size:clamp(12px,0.95vw,15px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:1.2vh; }
+  .card.hero .card-label { color:#5b8ff1; }
+
+  .chart-wrap { position:relative;flex:1;min-height:0; }
+
+  /* Bento grid für Metriken */
+  .bento-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.2vh; }
+
+  .bento { border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);padding:clamp(10px,1.2vh,16px) clamp(12px,1.2vw,18px);display:flex;flex-direction:column;gap:0.4vh;position:relative;overflow:hidden; }
+  .bento::after { content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(91,143,241,0.15),transparent); }
+  .bento.blue { background:rgba(91,143,241,0.07);border-color:rgba(91,143,241,0.2); }
+
+  .bento-label { font-size:clamp(10px,0.82vw,13px);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.55); }
+  .bento.blue .bento-label { color:#5b8ff1; }
+  .bento-value { font-size:clamp(20px,2.4vw,38px);font-weight:900;line-height:1;background:linear-gradient(135deg,#5b8ff1,#7aaaf5);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 8px rgba(91,143,241,0.25)); }
+  .bento-value.white { background:none;-webkit-background-clip:unset;background-clip:unset;color:rgba(255,255,255,0.35);filter:none; }
+  .bento-sub { font-size:clamp(11px,0.85vw,14px);font-weight:500;color:rgba(255,255,255,0.62);line-height:1.3; }
+
+  /* LP Conversion bars */
+  .conv-rows { display:flex;flex-direction:column;gap:1.2vh; }
+  .conv-row { display:flex;flex-direction:column;gap:0.4vh; }
+  .conv-top { display:flex;justify-content:space-between;align-items:center; }
+  .conv-name { font-size:clamp(12px,0.95vw,15px);font-weight:500;color:rgba(255,255,255,0.82); }
+  .conv-pct { font-size:clamp(13px,1vw,16px);font-weight:900;color:#5b8ff1; }
+  .conv-pct.grey { color:rgba(255,255,255,0.3); }
+  .bar-wrap { width:100%;height:5px;background:rgba(255,255,255,0.07);border-radius:3px; }
+  .bar-fill { height:5px;border-radius:3px; }
+
+  /* Fact box */
+  .fact-box { border-radius:12px;background:rgba(91,143,241,0.07);border:1px solid rgba(91,143,241,0.18);padding:clamp(10px,1.2vh,16px) clamp(14px,1.4vw,20px); }
+  .fact-text { font-size:clamp(13px,1.05vw,17px);font-weight:700;color:rgba(255,255,255,0.9);line-height:1.45; }
+  .fact-text em { font-style:normal;color:#5b8ff1; }
 </style>
 </head>
 <body>
 <div class="slide-wrap">
   <div class="bg"></div>
   <div class="slide">
+
     <div class="header">
       <div class="brand">neubau<span>.</span>marketing</div>
       <div class="slide-num">04 / 10</div>
     </div>
-    <div class="center">
-      <div class="wip-box">
-        <div class="wip-icon">&#9881;</div>
-        <div class="wip-label">Work in Progress</div>
-        <div class="wip-title">Zahlenvergleich & CPL</div>
-        <div class="wip-sub">Diese Slide wird gerade ausgearbeitet &mdash; in K&uuml;rze verf&uuml;gbar.</div>
+
+    <div class="body">
+
+      <div>
+        <div class="eyebrow">Zahlen &amp; Vergleich</div>
+        <div class="headline">Die Zahlen l&uuml;gen nicht.<br><span class="hl">~35&times; g&uuml;nstiger pro Anfrage.</span></div>
+      </div>
+
+      <div class="main">
+
+        <!-- LEFT: CPL Chart -->
+        <div class="left">
+          <div class="card hero" style="flex:1;display:flex;flex-direction:column;">
+            <div class="card-label">Cost per Lead — Portal vs. neubau.marketing (aus Cases)</div>
+            <div class="chart-wrap">
+              <canvas id="c_cpl"></canvas>
+            </div>
+            <div style="display:flex;gap:1.5vw;margin-top:1vh;flex-wrap:wrap;">
+              <div style="display:flex;align-items:center;gap:6px;font-size:clamp(10px,0.8vw,13px);color:rgba(255,255,255,0.5);">
+                <div style="width:12px;height:12px;border-radius:3px;background:#888780;"></div>Portal-Durchschnitt
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:clamp(10px,0.8vw,13px);color:rgba(255,255,255,0.5);">
+                <div style="width:12px;height:12px;border-radius:3px;background:#5b8ff1;"></div>neubau.marketing Cases
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Metriken + LP Conv -->
+        <div class="right">
+
+          <!-- Bento Grid: 4 Kennzahlen -->
+          <div class="bento-grid">
+            <div class="bento blue">
+              <div class="bento-label">Günstigster CPL</div>
+              <div class="bento-value">10,16 €</div>
+              <div class="bento-sub">bosch &amp; co.</div>
+            </div>
+            <div class="bento blue">
+              <div class="bento-label">Teuerster CPL</div>
+              <div class="bento-value">36,10 €</div>
+              <div class="bento-sub">hanikabau</div>
+            </div>
+            <div class="bento">
+              <div class="bento-label">Portal Ø CPL</div>
+              <div class="bento-value white">~600 €</div>
+              <div class="bento-sub">Bei 5 Anfragen / 3.000 € Abo</div>
+            </div>
+            <div class="bento blue">
+              <div class="bento-label">Faktor günstiger</div>
+              <div class="bento-value">~35&times;</div>
+              <div class="bento-sub">Portal vs. unser Ø CPL</div>
+            </div>
+          </div>
+
+          <!-- LP Conversion Rates -->
+          <div class="card" style="flex:1;display:flex;flex-direction:column;">
+            <div class="card-label">Landingpage Conversion Rate — Besucher zu Anfrage</div>
+            <div class="conv-rows">
+              <div class="conv-row">
+                <div class="conv-top">
+                  <div class="conv-name">Marktdurchschnitt</div>
+                  <div class="conv-pct grey">2–4%</div>
+                </div>
+                <div class="bar-wrap"><div class="bar-fill" style="width:12%;background:rgba(255,255,255,0.2);"></div></div>
+              </div>
+              <div class="conv-row">
+                <div class="conv-top">
+                  <div class="conv-name">Bank 1 Saar</div>
+                  <div class="conv-pct">~6%</div>
+                </div>
+                <div class="bar-wrap"><div class="bar-fill" style="width:30%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
+              </div>
+              <div class="conv-row">
+                <div class="conv-top">
+                  <div class="conv-name">bosch &amp; co.</div>
+                  <div class="conv-pct">8,2%</div>
+                </div>
+                <div class="bar-wrap"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
+              </div>
+              <div class="conv-row">
+                <div class="conv-top">
+                  <div class="conv-name">BSK Immobilien Berlin</div>
+                  <div class="conv-pct">9–10%</div>
+                </div>
+                <div class="bar-wrap"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#5b8ff1,#7aaaf5);"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fact box -->
+          <div class="fact-box">
+            <div class="fact-text">
+              hanikabau: Termine von <em>1&ndash;2/Monat auf 10 im Februar 2026</em> &mdash; nach Einf&uuml;hrung der telefonischen Vorqualifizierung. <em>+500%</em> in einem Monat.
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
+
     <div class="footer">
       <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
       <div class="footer-text">Vertraulich &middot; Closing Deck 2026</div>
     </div>
   </div>
 </div>
+
+<script>
+window.addEventListener('load', function() {
+  const muted = 'rgba(240,242,247,0.4)';
+  const grid  = 'rgba(240,242,247,0.07)';
+  const blue  = '#5b8ff1';
+  const grey  = 'rgba(136,135,128,0.7)';
+
+  new Chart(document.getElementById('c_cpl'), {
+    type: 'bar',
+    data: {
+      labels: ['Portal Ø', 'bosch & co.', 'Bank 1 Saar', 'BSK Berlin', 'hanikabau'],
+      datasets: [{
+        data: [600, 10.16, 17.30, 22.12, 36.10],
+        backgroundColor: [grey, blue, blue, blue, blue],
+        borderRadius: 7,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ' ' + ctx.parsed.y.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' €'
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: muted, font: { size: 11, weight: '600' } }
+        },
+        y: {
+          grid: { color: grid },
+          ticks: {
+            color: muted,
+            font: { size: 10 },
+            callback: v => v + ' €'
+          },
+          max: 700
+        }
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>
